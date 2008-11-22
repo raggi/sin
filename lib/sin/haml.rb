@@ -10,7 +10,7 @@ module Sin
 
     def render_haml(content, options = {}, &b)
       haml_options = (options[:options] || {}).
-      merge(Sin.options.haml || {})
+        merge(@app.options[:haml] || {})
       ::Haml::Engine.new(content, haml_options).
       render(options[:scope] || self, options[:locals] || {}, &b)
     end
