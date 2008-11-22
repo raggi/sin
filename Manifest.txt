@@ -4,7 +4,7 @@ README.txt
 Rakefile
 bin/sin
 examples/config.sin
-examples/hell_world.sina
+examples/hello_world.sina
 lib/sin.rb
 lib/sin/application.rb
 lib/sin/builder.rb
