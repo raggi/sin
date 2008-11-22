@@ -1,0 +1,37 @@
+#!/usr/bin/env sin
+
+map '/' do
+  use Rack::Deflater
+  use Rack::ShowStatus
+  use Rack::CommonLogger
+  use Rack::ShowExceptions
+  use Rack::Session::Cookie
+
+  map '/openid' do
+    run Rack::Auth::OpenID.new('http://localhost:9292/')
+  end
+  
+  sin '/blog' do
+    get '/' do
+      "a blog"
+    end
+  end
+
+  sin '/test' do
+    get '/' do
+      "test pass"
+    end
+  end
+
+  sin '/raise' do
+    get '/' do
+      raise 'boom'
+    end
+  end
+
+  map '/rack' do
+    run proc { |env| Rack::Response.new.finish }
+  end
+  
+  sin '/', :load => 'hell_world.sina'
+end

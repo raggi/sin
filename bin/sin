@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+path = File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
+$LOAD_PATH.unshift(path) unless $LOAD_PATH.include? path
+
+require 'rubygems'
+require 'sin'
+
+if ARGV.include?('-h')
+  $stdout << <<-EOHELP
+
+Usage: #{$0} [sin options] [ruby options] [rack options] [config.sin | config.ru | config.rb]
+Sin options:
+  -E, --env ENVIRONMENT    shadowed - loaded as sin default option
+Rackup:
+  EOHELP
+end
+
+class Rack::Builder
+  include Sin::Rackup
+end
+
+if idx = ARGV.index('-E') or idx = ARGV.index('--env')
+  Sin::Application.default_options[:env] = ARGV[idx + 1].intern
+end
+
+ARGV << 'config.sin' if ARGV.empty? && File.exist?('config.sin')
+
+if /\.sin(?:a?)$/ =~ ARGV.last
+  $singleton_sin = ARGV.delete(ARGV.last)
+  ARGV << File.join(path, 'sin', 'config.ru')
+end
+
+load 'rackup'

@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+__DIR__ = File.dirname(__FILE__)
+__APP__ = File.expand_path(__DIR__ + '/../')
+
+puts
+Dir.chdir(__APP__) do
+  files = ARGV.empty? ? Dir.glob('{test,spec}/**/{test,spec}_*.rb') : ARGV
+  files.each { |f| require f }
+end

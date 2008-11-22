@@ -1,0 +1,4 @@
+#!/usr/bin/env sin
+get '/' do
+  'hell world'
+end
