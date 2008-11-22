@@ -13,7 +13,8 @@ module Sin
 
     attr_accessor :route_params
 
-    def initialize(request, response, route_params)
+    def initialize(app, request, response, route_params)
+      @app = app
       @params = nil
       @data = nil
       @request = request

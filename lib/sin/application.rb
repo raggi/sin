@@ -146,7 +146,7 @@ module Sin
     # +env+ argument and return value.
     def dispatch(env)
       request = Request.new(env)
-      context = EventContext.new(request, Rack::Response.new([], 200), {})
+      context = EventContext.new(self, request, Rack::Response.new([], 200), {})
       begin
         returned =
         catch(:halt) do

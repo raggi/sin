@@ -37,7 +37,7 @@ module Sin
 
     def read_template_file(renderer, template, options, scream = true)
       path = File.join(
-        options[:views_directory] || Sin.application.options.views,
+        options[:views_directory] || @app.options.views,
         "#{template}.#{renderer}"
       )
       unless File.exists?(path)
@@ -49,7 +49,7 @@ module Sin
     end
 
     def templates
-      Sin.application.templates
+      @app.templates
     end
 
   end
