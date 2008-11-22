@@ -33,5 +33,5 @@ map '/' do
     run proc { |env| Rack::Response.new.finish }
   end
   
-  sin '/', :load => 'hell_world.sina'
+  sin '/', :load => 'hello_world.sina'
 end
