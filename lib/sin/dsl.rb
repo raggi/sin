@@ -171,7 +171,7 @@ module Sin
     end
     
     def mime(ext, type)
-      Rack::File::MIME_TYPES[ext.to_s] = type
+      Rack::Mime::MIME_TYPES[ext.to_s] = type
     end
     
     def helpers(&b)
