@@ -31,4 +31,6 @@ if /\.sin(?:a?)$/ =~ ARGV.last
   ARGV << File.join(path, 'sin', 'config.ru')
 end
 
-load 'rackup'
+file = nil
+ENV['PATH'].split(':').find{|path| File.file?(file = File.join(path, 'rackup')) }
+load file
