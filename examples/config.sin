@@ -1,11 +1,11 @@
 #!/usr/bin/env sin
 
 map '/' do
-  use Rack::Deflater
   use Rack::ShowStatus
   use Rack::CommonLogger
   use Rack::ShowExceptions
   use Rack::Session::Cookie
+  # use Rack::Deflater
 
   map '/openid' do
     run Rack::Auth::OpenID.new('http://localhost:9292/')
