@@ -19,4 +19,5 @@ PROJ.version = Sin.version
 PROJ.exclude = %w(tmp$ bak$ ~$ CVS \.git \.hg \.svn ^pkg ^doc \.DS_Store
   \.cvs \.svn \.hgignore \.gitignore \.dotest \.swp$ ~$)
 
+CLEAN.include 'pkg'
 # EOF

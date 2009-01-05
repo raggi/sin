@@ -7,10 +7,14 @@ $TESTING=true
 $:.push File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
 $:.uniq!
 
-%w[rubygems bacon].each { |r| require r }
+begin; require 'rubygems'; rescue LoadError; end
+
+%w[bacon mocha].each { |r| require r }
 
 # Bacon doesn't do any automagic, so lets tell it to!
 Bacon.summary_on_exit
 
 require File.expand_path(
   File.join(File.dirname(__FILE__), %w[.. lib sin]))
+
+require 'sin/test/bacon'

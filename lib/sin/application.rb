@@ -172,7 +172,7 @@ module Sin
       body = '' unless body.respond_to?(:each)
       body = '' if request.env["REQUEST_METHOD"].upcase == 'HEAD'
       context.body = body.kind_of?(String) ? [*body] : body
-      context.response['Content-Length'] ||= body.size.to_s
+      context.response['Content-Length'] ||= body.size.to_s if body.respond_to?(:size)
       context.finish
     end
 
